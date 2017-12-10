@@ -3,17 +3,17 @@ package solutionToSix;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class MemoryReallocation {
+public class NumberCount {
+
 	ArrayList<Integer> memory;
 	LinkedList<String> occuredSequences;
 	int size;
 	
-	public MemoryReallocation() {
+	public NumberCount() {
 		memory=new ArrayList<Integer>();
 		occuredSequences=new LinkedList<String>();
 	}
@@ -103,10 +103,25 @@ public class MemoryReallocation {
 	public void printSequence() {
 		System.out.println("Current sequence is: "+getSequenceString());
 	}
+	
+	public int numberRepeat() {
+		int returnint=0;
+		int index=0;
+		for(String s:occuredSequences) {
+			if(s.equals(getSequenceString())) {
+				//System.out.println("Actual sequence: "+getSequenceString());
+				//System.out.println("Found sequence: "+s);
+				return index;
+			}
+			index++;
+		}
+		
+		return returnint;
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		MemoryReallocation m=new MemoryReallocation();
+		NumberCount m=new NumberCount();
 		m.loadMemory();
 		int iterations=0;
 		m.printSequence();
@@ -117,7 +132,7 @@ public class MemoryReallocation {
 			m.printSequence();
 		}
 		
-		System.out.println(iterations);
+		System.out.println(String.valueOf(iterations-m.numberRepeat()));
 
 	}
 
